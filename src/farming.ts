@@ -1,5 +1,7 @@
 import { log, find_state_data } from './util';
 import { Ifarmlist } from './interfaces';
+import external_api from './external_api';
+import settings from './settings';
 
 class farming {
 	farmlist_ident: string = 'Collection:FarmList:';
@@ -15,6 +17,10 @@ class farming {
 		}
 
 		return farmlist.data;
+	}
+
+	async find_inactive() {
+		external_api.get_inactive_villages(settings.gameworld, 10, 20);
 	}
 }
 

@@ -27,6 +27,7 @@ class kingbot {
 		
 		console.log(`start login to gameworld ${gameworld} with account ${email} ...`);
 		await api.login(email, password, gameworld);
+		settings.gameworld = gameworld.toLowerCase();
 	}
 
 	async start_farming(farmlists: string[], village_name: string | string[], interval: number): Promise<void> {
@@ -129,6 +130,11 @@ class kingbot {
 		for(let target of list_obj.villageIds) {
 			await api.send_units(village_id, target, units, 6);
 		}
+
+	}
+
+	async inactive_test() {
+		farming.find_inactive();
 	}
 }
 

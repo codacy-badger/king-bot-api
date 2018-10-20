@@ -5,6 +5,8 @@ class settings {
 	assets_folder: string = './assets';
 	database_name: string = '/database.json';
 
+	gameworld: string;
+
 	read_credentials(){
 		const filename: string = this.assets_folder + '/cred.txt';
 
