@@ -8,20 +8,21 @@ class external_api {
 		this.ax = axios.create();
 	}
 
-	async get_server_by_gameworld(gameworld: string): Promise<number> {
-		const server_url: string = 'https://api.travian.engin9tools.com/api/global/servers';
-		// TODO fetch servers and get proper gameworld id
-		return 209;
-	}
-
 	async get_inactive_villages(
 		gameworld: string, x: number, y: number, 
 		max_pop: number = 500, max_player_pop: number = 1500, 
 		max_player_villages: number = 5, evolution_max: number = 0, 
 		evolution_day: number = 3): Promise<any[]> {
 
-		const gameworldID: number = await this.get_server_by_gameworld(gameworld);
-		
+		const base_url: string = 'https://www.gettertools.com';
+		const url: string = `/${gameworld}.kingdoms.com/42-Search-inactives`;
+		const payload: any = {
+
+		}
+
+		return;
+		const gameworldID: number = 209;
+
 		let page: number = 0;
 		let res_data: any[] = [];
 		const inactive_villages: any[] = [];
@@ -47,8 +48,8 @@ class external_api {
 				allowAlliances=true&\
 				allowCapitals=true&\
 				page=${page}\
-			`.replace(/\s/g, '');
-			console.log(page_url)
+			`.replace(/\s/g, ''); // get rid of all whitespace
+
 
 			const res: any = await this.ax.get(page_url);
 
@@ -60,6 +61,7 @@ class external_api {
 			}
 
 			page++;
+			break;
 		} while(res_data);
 
 		console.log(inactive_villages);
